@@ -1,0 +1,175 @@
+
+//	
+//	public void dynamoDbOps(String tableName, BasicAWSCredentials awsCredentials) {
+//		AmazonDynamoDBClient dynamoDbClient = new AmazonDynamoDBClient(awsCredentials)
+//        		.withRegion(Regions.US_EAST_1);
+//		DynamoDB dynamoDB = new DynamoDB(dynamoDbClient);
+//
+//	        try {
+//
+//	            List<AttributeDefinition> attributeDefinitions = new ArrayList<AttributeDefinition>();
+//	            attributeDefinitions.add(new AttributeDefinition().withAttributeName("Pet_Name").withAttributeType("S"));
+//	            attributeDefinitions.add(new AttributeDefinition().withAttributeName("Owner").withAttributeType("S"));
+//	            attributeDefinitions.add(new AttributeDefinition().withAttributeName("Breed").withAttributeType("S"));
+//
+//	            List<KeySchemaElement> keySchema = new ArrayList<KeySchemaElement>();
+//	            keySchema.add(new KeySchemaElement().withAttributeName("Pet_Name").withKeyType(KeyType.HASH)); // Partition
+//	                                                                                                     // key
+//
+//	            CreateTableRequest request = new CreateTableRequest().withTableName(tableName).withKeySchema(keySchema)
+//	                .withAttributeDefinitions(attributeDefinitions).withProvisionedThroughput(
+//	                    new ProvisionedThroughput().withReadCapacityUnits(5L).withWriteCapacityUnits(6L));
+//
+//	            System.out.println("Issuing CreateTable request for " + tableName);
+//	            Table table = dynamoDB.createTable(request);
+//
+//	            System.out.println("Waiting for " + tableName + " to be created...this may take a while...");
+//	            table.waitForActive();
+//
+//	        }
+//	        catch (Exception e) {
+//	            System.err.println("CreateTable request failed for " + tableName);
+//	            System.err.println(e.getMessage());
+//	        }
+//
+//	        System.out.println("Describing " + tableName);
+//
+//	        TableDescription tableDescription = dynamoDB.getTable(tableName).describe();
+//	        System.out.format(
+//	            "Name: %s:\n" + "Status: %s \n" + "Provisioned Throughput (read capacity units/sec): %d \n"
+//	                + "Provisioned Throughput (write capacity units/sec): %d \n",
+//	            tableDescription.getTableName(), tableDescription.getTableStatus(),
+//	            tableDescription.getProvisionedThroughput().getReadCapacityUnits(),
+//	            tableDescription.getProvisionedThroughput().getWriteCapacityUnits());
+//
+//
+//
+//	        TableCollection<ListTablesResult> tables = dynamoDB.listTables();
+//	        Iterator<Table> iterator = tables.iterator();
+//
+//	        System.out.println("Listing table names");
+//
+//	        while (iterator.hasNext()) {
+//	            Table table = iterator.next();
+//	            System.out.println(table.getTableName());
+//	        }
+//
+//	        
+////	        Table table = dynamoDB.getTable(tableName);
+////	        System.out.println("Modifying provisioned throughput for " + tableName);
+////
+////	        try {
+////	            table.updateTable(new ProvisionedThroughput().withReadCapacityUnits(6L).withWriteCapacityUnits(7L));
+////
+////	            table.waitForActive();
+////	        }
+////	        catch (Exception e) {
+////	            System.err.println("UpdateTable request failed for " + tableName);
+////	            System.err.println(e.getMessage());
+////	        }
+////
+////	        try {
+////	            System.out.println("Issuing DeleteTable request for " + tableName);
+////	            table.delete();
+////
+////	            System.out.println("Waiting for " + tableName + " to be deleted...this may take a while...");
+////
+////	            table.waitForDelete();
+////	        }
+////	        catch (Exception e) {
+////	            System.err.println("DeleteTable request failed for " + tableName);
+////	            System.err.println(e.getMessage());
+////	        }
+//
+//	}
+//	
+//	public void createDynamoDbTable(String table_name, BasicAWSCredentials awsCredentials)
+//    {
+//
+//        System.out.format(
+//            "Creating table \"%s\" with a simple primary key: \"Name\".\n",
+//            table_name);
+//
+//        List<AttributeDefinition> attributeDefinitions= new ArrayList<AttributeDefinition>();
+//        attributeDefinitions.add(new AttributeDefinition().withAttributeName("Pet_Name").withAttributeType("S"));
+////        attributeDefinitions.add(new AttributeDefinition().withAttributeName("Owner").withAttributeType("S"));
+////        attributeDefinitions.add(new AttributeDefinition().withAttributeName("Breed").withAttributeType("S"));
+////        
+//        CreateTableRequest request = new CreateTableRequest()
+//            .withAttributeDefinitions(attributeDefinitions)
+//            .withKeySchema(new KeySchemaElement("Pet_Name", KeyType.HASH))
+//            .withProvisionedThroughput(new ProvisionedThroughput()
+//            		.withReadCapacityUnits(5L)
+//                    .withWriteCapacityUnits(6L))
+//            .withTableName(table_name);
+//     
+//        AmazonDynamoDBClient dynamoDbClient = new AmazonDynamoDBClient(awsCredentials)
+//        		.withRegion(Regions.US_EAST_1);
+//        
+////      Check if DynamoDB table exists, if not then create a new table.
+//        ListTablesResult tableList = dynamoDbClient.listTables();
+//        if(tableList.getTableNames().contains(table_name)) {
+//        	System.out.println("DynamoDB Table with name: "+table_name+" already exists.");
+//        } else {
+//        	dynamoDbClient.createTable(request);
+//        	System.out.println("Creating a new DynamoDB Table with table name: "+table_name);
+//        }
+//        
+////      Print DynamoDB table creation time to check.
+//        DescribeTableResult dynamoDbTable = dynamoDbClient.describeTable(table_name);
+//        System.out.println("dynamoDbTable.getTable().getCreationDateTime() --> "+dynamoDbTable.getTable().getCreationDateTime());
+//
+//        System.out.println("DyanmoDB Table creation completed!");
+//    }
+//	
+//	public void addDataToDynamoDbTable(String table_name, BasicAWSCredentials awsCredentials)
+//    {
+//
+//        System.out.println("Operating with table "+table_name);
+//     
+//        AmazonDynamoDBClient dynamoDbClient = new AmazonDynamoDBClient(awsCredentials)
+//        		.withRegion(Regions.US_EAST_1);
+//        
+////      Check if DynamoDB table exists, if not then create a new table.
+//        ListTablesResult tableList = dynamoDbClient.listTables();
+//        if(tableList.getTableNames().contains(table_name)) {
+//        	System.out.println("DynamoDB Table with name: "+table_name+" exists.");
+//        } else {
+//        	System.out.println("DynamoDB Table with table name: "+table_name+" does not exist.");
+//        	return;
+//        }
+//        
+////      Print DynamoDB table creation time to check.
+//        DescribeTableResult dynamoDbTable = dynamoDbClient.describeTable(table_name);
+//        System.out.println("dynamoDbTable.getTable().getCreationDateTime() --> "+dynamoDbTable.getTable().getCreationDateTime());
+//        
+//        
+//        
+//        System.out.println("DyanmoDB Table creation completed!");
+//    }
+//	
+//	public void getDataToDynamoDbTable(String table_name, BasicAWSCredentials awsCredentials)
+//    {
+//
+//        System.out.println("Operating with table "+table_name);
+//     
+//        AmazonDynamoDBClient dynamoDbClient = new AmazonDynamoDBClient(awsCredentials)
+//        		.withRegion(Regions.US_EAST_1);
+//        
+////      Check if DynamoDB table exists, if not then create a new table.
+//        ListTablesResult tableList = dynamoDbClient.listTables();
+//        if(tableList.getTableNames().contains(table_name)) {
+//        	System.out.println("DynamoDB Table with name: "+table_name+" exists.");
+//        } else {
+//        	System.out.println("DynamoDB Table with table name: "+table_name+" does not exist.");
+//        	return;
+//        }
+//        
+////      Print DynamoDB table creation time to check.
+//        DescribeTableResult dynamoDbTable = dynamoDbClient.describeTable(table_name);
+//        System.out.println("dynamoDbTable.getTable().getCreationDateTime() --> "+dynamoDbTable.getTable().getCreationDateTime());
+//        
+//        
+//        
+//        System.out.println("DyanmoDB Table creation completed!");
+//    }
