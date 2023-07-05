@@ -54,7 +54,7 @@ class MysqlCon {
 			
 			Statement stmt = con.createStatement();
 			
-			String sqlQuery = "INSERT INTO pet_data VALUES ('"+petName+"', '"+ownerName+"', '"+dogSpecies+"')";
+			String sqlQuery = "INSERT INTO pet_data (petName, ownerName, dogSpecies) VALUES ('"+petName+"', '"+ownerName+"', '"+dogSpecies+"')";
 			System.out.println("Executing INSERT SQL Query: "+sqlQuery);
 			int resultCount = stmt.executeUpdate(sqlQuery);
 			
