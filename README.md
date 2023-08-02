@@ -1,5 +1,8 @@
 # aws-cloud-devops-training
 
+**Combined recording directory:**
+https://drive.google.com/drive/folders/1Kv9yeCdnD8RVVWq6KSywZb99Fn1ooUuj?usp=drive_link
+
 
 **Individual recording notes:**
 
