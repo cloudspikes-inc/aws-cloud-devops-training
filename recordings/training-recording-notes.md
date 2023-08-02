@@ -1,5 +1,7 @@
 **Individual recording notes:**
 
+**Note:**__ Recordings #2 & #39 are not included over here but in the next session all the topics covered in these sessions are recovered along with documentation.
+
 
 Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230605 0225-1 Day #1_
