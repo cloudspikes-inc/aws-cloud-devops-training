@@ -1,0 +1,151 @@
+
+# This workflow installs the latest version of Terraform CLI and configures the Terraform CLI configuration file
+# with an API token for Terraform Cloud (app.terraform.io). On pull request events, this workflow will run
+# `terraform init`, `terraform fmt`, and `terraform plan` (speculative plan via Terraform Cloud). On push events
+# to the master branch, `terraform apply` will be executed.
+#
+# Documentation for `hashicorp/setup-terraform` is located here: https://github.com/hashicorp/setup-terraform
+#
+# To use this workflow, you will need to complete the following setup steps.
+#
+# 1. Create a `main.tf` file in the root of this repository with the `remote` backend and one or more resources defined.
+#   Example `main.tf`:
+#     # The configuration for the `remote` backend.
+#     terraform {
+#       backend "remote" {
+#         # The name of your Terraform Cloud organization.
+#         organization = "example-organization"
+#
+#         # The name of the Terraform Cloud workspace to store Terraform state files in.
+#         workspaces {
+#           name = "example-workspace"
+#         }
+#       }
+#     }
+#
+#     # An example resource that does nothing.
+#     resource "null_resource" "example" {
+#       triggers = {
+#         value = "A example resource that does nothing!"
+#       }
+#     }
+#
+
+# 2. Generate a Terraform Cloud user API token and store it as a GitHub secret (e.g. TF_API_TOKEN) on this repository.
+#   Documentation:
+#     - https://www.terraform.io/docs/cloud/users-teams-organizations/api-tokens.html
+#     - https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
+#
+# 3. Reference the GitHub secret in step using the `hashicorp/setup-terraform` GitHub Action.
+#   Example:
+#     - name: Setup Terraform
+#       uses: hashicorp/setup-terraform@v1
+#       with:
+#         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+name: "NodeJs app build and deploy"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - src/**
+  pull_request:
+
+jobs:
+  terraform:
+    name: "NodeJs app build and deploy"
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    environment: test
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AK_VALUE }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.SK_VALUE }}
+      AWS_PROFILE: ${{ secrets.AWS_PROFILE_NAME }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+      APP_PORT_NUMBER : ${{ secrets.APP_PORT_NUMBER }}
+      AWS_PRIVATE_ECR_REPO_NAME: ${{ secrets.AWS_PRIVATE_ECR_REPO_NAME }}
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Checking tools version
+      - name: Checking AWS version
+        run: aws --version
+          
+      # Configuring AWS CLI for CI Steps
+      - name: Configuring AWS CLI
+        env:
+          AWS_AK_VALUE: ${{ secrets.AK_VALUE }}
+          AWS_SK_VALUE: ${{ secrets.SK_VALUE }}
+          AWS_REG_VALUE: ${{ secrets.AWS_REGION }}
+        run: |
+          aws configure set aws_access_key_id $AWS_AK_VALUE
+          aws configure set aws_secret_access_key $AWS_SK_VALUE
+          aws configure set region $AWS_REG_VALUE
+          aws s3 ls
+         
+      # Verifying installed Docker version
+      - name: Verifying installed Docker version
+        run: |
+          docker --version
+          docker images
+          
+      # AWS ECR Login, Build and Push the app Docker img
+      - name: CI Steps
+        if: always()
+        continue-on-error: true
+        working-directory: ./src
+        env:
+          AWS_PRIVATE_ECR_REPO_NAME: ${{ secrets.AWS_PRIVATE_ECR_REPO_NAME }}
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+          AWS_REG_VALUE: ${{ secrets.AWS_REGION }}
+          APP_PORT_NUMBER : ${{ secrets.APP_PORT_NUMBER }}
+        run: |
+          aws ecr get-login-password --region $AWS_REG_VALUE | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REG_VALUE.amazonaws.com
+          echo commit id: $GITHUB_SHA
+          docker build --build-arg APP_PORT=$APP_PORT_NUMBER -t $AWS_PRIVATE_ECR_REPO_NAME:$GITHUB_SHA .
+          docker tag $AWS_PRIVATE_ECR_REPO_NAME:$GITHUB_SHA $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REG_VALUE.amazonaws.com/$AWS_PRIVATE_ECR_REPO_NAME:$GITHUB_SHA
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REG_VALUE.amazonaws.com/$AWS_PRIVATE_ECR_REPO_NAME:$GITHUB_SHA
+
+      # Configuring AWS CLI for CD Steps
+      - name: Configuring AWS CLI
+        env:
+          AWS_AK_VALUE: ${{ secrets.AK_VALUE }}
+          AWS_SK_VALUE: ${{ secrets.SK_VALUE }}
+          AWS_REG_VALUE: ${{ secrets.AWS_REGION }}
+          AWS_PROFILE_NAME_VALUE: ${{ secrets.AWS_PROFILE_NAME }}
+        run: |
+          aws configure set aws_access_key_id $AWS_AK_VALUE --profile $AWS_PROFILE_NAME_VALUE
+          aws configure set aws_secret_access_key $AWS_SK_VALUE --profile $AWS_PROFILE_NAME_VALUE
+          aws configure set region $AWS_REG_VALUE --profile $AWS_PROFILE_NAME_VALUE
+          aws s3 ls --profile $AWS_PROFILE_NAME_VALUE
+
+      # Deploying updated ECR repo image on the ECS Fargate Cluster using Terraform scripts
+      - name: CD Steps
+        working-directory: ./infra
+        env:
+          AWS_PRIVATE_ECR_REPO_NAME: ${{ secrets.AWS_PRIVATE_ECR_REPO_NAME }}
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+          AWS_REG_VALUE: ${{ secrets.AWS_REGION }}
+          APP_PORT_NUMBER : ${{ secrets.APP_PORT_NUMBER }}
+        run: |
+          terraform --version
+          terraform init
+          terraform fmt -check
+          terraform validate
+          export UPDATED_DOCKER_IMG=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REG_VALUE.amazonaws.com/$AWS_PRIVATE_ECR_REPO_NAME:$GITHUB_SHA
+          echo current docker image value: $UPDATED_DOCKER_IMG
+          terraform plan -var="app_image=$UPDATED_DOCKER_IMG" -var="app_port=$APP_PORT_NUMBER"
+          terraform apply -var="app_image=$UPDATED_DOCKER_IMG" -var="app_port=$APP_PORT_NUMBER" -auto-approve
+          terraform show
+          #terraform destroy -var="app_image=$UPDATED_DOCKER_IMG" -var="app_port=$APP_PORT_NUMBER" -auto-approve
+
