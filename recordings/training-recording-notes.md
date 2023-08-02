@@ -1,6 +1,6 @@
 **Individual recording notes:**
 
-_**Note:**_ Recordings #2 & #39 are not included over here but in the next session all the topics covered in these sessions are recovered along with documentation.
+_**Note:**_ Recordings #2 & #39 are not included over here but in the next session (#3 & #40) all the topics covered in these sessions are recovered along with documentation.
 
 
 Topic:
