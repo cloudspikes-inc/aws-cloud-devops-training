@@ -1,12 +1,25 @@
 **Individual recording notes:**
 
 
+Topic:
+_AWS Cloud DevOps Training - CloudSpikes - June 2023-20230605 0225-1 Day #1_
+
+Recording link: 
+https://drive.google.com/file/d/1_y381vqnfMfC4vz07Op-NBGIeHQgMph2/view?usp=drive_link
+
+Desc: 
+30,000 foot view on AWS Cloud & DevOps Training Program to set the context of the training and understand what to expect from the training perspective.
+
+
+
 
 Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230608 0225-1 Day #3_
 
+Recording link: 
+
 Desc: 
-The session we had yesterday on Git basics & installing the Git package on a fresh new AWS EC2 Ubuntu AMI VM.
+The session we had on Git basics & installing the Git package on a fresh new AWS EC2 Ubuntu AMI VM.
 
 
 
@@ -14,7 +27,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230609 0225-1 Day #4_
 
 Desc: 
-The session we had yesterday on setting up Git configurations on an AWS EC2 Virtual Machine & then creating a public repository in the GitHub Account. We went through some of the basic Linux commands & then cloned (downloaded) the public repo on the configured AWS EC2 Ubuntu VM.
+The session we had on setting up Git configurations on an AWS EC2 Virtual Machine & then creating a public repository in the GitHub Account. We went through some of the basic Linux commands & then cloned (downloaded) the public repo on the configured AWS EC2 Ubuntu VM.
 
 
 
@@ -22,7 +35,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230610 0225-1 Day #5_
 
 Desc:
-The Session we had yesterday on Git operations on a Mac OS for a private repo with some basic Linux commands & SSH Auth process to clone the private repo.
+The Session we had on Git operations on a Mac OS for a private repo with some basic Linux commands & SSH Auth process to clone the private repo.
 
 
 
@@ -41,7 +54,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230614 0228-1 Day #7_
 
 Desc: 
-The session we had yesterday on Git branching, pull, online editing, fixing conflicts using VS Code, etc.
+The session we had on Git branching, pull, online editing, fixing conflicts using VS Code, etc.
 
 
 
@@ -51,7 +64,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230615 0225-1 Day #8_
 
 Desc: 
-The session we had yesterday about the Git conflict understanding and solution, backing up the changes via Git, Fetch vs Pull, and Regular merge vs Squash merge.
+The session we had about the Git conflict understanding and solution, backing up the changes via Git, Fetch vs Pull, and Regular merge vs Squash merge.
 
 
 
@@ -83,7 +96,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230620 0225-1 Day #11_
 
 Desc: 
-The session we had yesterday on AWS Cost Explorer & SNS service setup via AWS Console manually.
+The session we had on AWS Cost Explorer & SNS service setup via AWS Console manually.
 
 
 
@@ -94,7 +107,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230621 0225-1 Day #12_
 
 Desc: 
-The session we had yesterday on a few IT basics & Task #1 on AWS Cost management & enabling MFA on the root user account.
+The session we had on a few IT basics & Task #1 on AWS Cost management & enabling MFA on the root user account.
 
 
 
@@ -105,7 +118,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230622 0227-1 Day #13_
 
 Desc: 
-The session we had yesterday on AWS CloudWatch Alarms to track the total amount spent on AWS Cloud Infra & get notified via AWS SNS when the threshold amount is exceeded.
+The session we had on AWS CloudWatch Alarms to track the total amount spent on AWS Cloud Infra & get notified via AWS SNS when the threshold amount is exceeded.
 
 
 
@@ -116,7 +129,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230623 0225-1 Day #14_
 
 Desc: 
-The session we had yesterday on AWS IAM Users, Groups, Roles & Policies (JSON format) along with setting up an IAM User with Admin access for AWS CLI & install/configuring it on a fresh new AWS EC2 Ubuntu VM.
+The session we had on AWS IAM Users, Groups, Roles & Policies (JSON format) along with setting up an IAM User with Admin access for AWS CLI & install/configuring it on a fresh new AWS EC2 Ubuntu VM.
 
 
 
@@ -137,7 +150,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230627 0225-1 Day #16_
 
 Desc: 
-The session we had yesterday on revising the AWS VPC Networking concepts.
+The session we had on revising the AWS VPC Networking concepts.
 
 
 
@@ -148,7 +161,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230628 0225-1 Day #17_
 
 Desc: 
-The session we had yesterday on Configuring & testing a static website on the public EC2 host via Apache HTTP Server.
+The session we had on Configuring & testing a static website on the public EC2 host via Apache HTTP Server.
 
 
 
@@ -158,7 +171,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230629 0225-1 Day #18_
 
 Desc: 
-The session we had yesterday on setting up internet-facing ALB with its Target Group, Listeners & Security Group configurations to set the target as a Private EC2 Instance where Nginx is hosted & expose publically via ALB as an entry point.
+The session we had on setting up internet-facing ALB with its Target Group, Listeners & Security Group configurations to set the target as a Private EC2 Instance where Nginx is hosted & expose publically via ALB as an entry point.
 
 
 
@@ -179,7 +192,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230701 0225-1 Day #20_
 
 Desc: 
-The session we had yesterday on creating an ASG via Launch Template in integration with an ALB via Target Group. Also, we went through the static website hosting process without hosting any servers or configurations on AWS S3 Bucket.
+The session we had on creating an ASG via Launch Template in integration with an ALB via Target Group. Also, we went through the static website hosting process without hosting any servers or configurations on AWS S3 Bucket.
 
 
 
@@ -189,7 +202,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230704 0225-1 Day #21_
 
 Desc: 
-The session we had yesterday on AWS Serverless Architecture also known as AWS Event-Driven Architecture using API Gw, Lambda Functions with Java SDK & SNS Topic/Subscribers.
+The session we had on AWS Serverless Architecture also known as AWS Event-Driven Architecture using API Gw, Lambda Functions with Java SDK & SNS Topic/Subscribers.
 
 
 
@@ -199,7 +212,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230705 0225-1 Day #22_
 
 Desc: 
-The session we had yesterday on AWS Serverless Architecture with AWS RDS - MySQL DB service. Testing the end-to-end REST API calls from the Postman tool & visualizing the data locally using the MySQL Workbench tool.
+The session we had on AWS Serverless Architecture with AWS RDS - MySQL DB service. Testing the end-to-end REST API calls from the Postman tool & visualizing the data locally using the MySQL Workbench tool.
 
 
 
@@ -209,7 +222,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230706 0225-1 Day #23_
 
 Desc: 
-The session we had yesterday on AWS Serverless Architecture with DynamoDB services for NoSQL database requirements.
+The session we had on AWS Serverless Architecture with DynamoDB services for NoSQL database requirements.
 
 
 
@@ -231,7 +244,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230708 0225-1 Day #25_
 
 Desc: 
-The session we had yesterday on AWS Cloud native Logging solutions for API Gw, CloudTrail and custom logging metrics collection from an EC2 VM using CloudWatch Agents.
+The session we had on AWS Cloud native Logging solutions for API Gw, CloudTrail and custom logging metrics collection from an EC2 VM using CloudWatch Agents.
 
 
 
@@ -241,7 +254,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230711 0225-1 Day #26_
 
 Desc: 
-The session we had yesterday on building ETL pipeline using AWS Glue jobs, Glue DB & Tables, Crawlers, IAM Roles, S3 bucket & Athena by using a test data CSV file.
+The session we had on building ETL pipeline using AWS Glue jobs, Glue DB & Tables, Crawlers, IAM Roles, S3 bucket & Athena by using a test data CSV file.
 
 
 
@@ -261,7 +274,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230713 0225-1 Day #28_
 
 Desc: 
-The session we had yesterday on Terraform resource definition, finding the correct resource type by following Terraform official documentation and setting up Terraform & Provider block in the TF file with a specific version.
+The session we had on Terraform resource definition, finding the correct resource type by following Terraform official documentation and setting up Terraform & Provider block in the TF file with a specific version.
 
 
 
@@ -353,7 +366,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230726 0229-1 Day #37_
 
 Desc: 
-The session we had yesterday on Integrating GitHub Public & Private Repository to trigger the Jenkins Freestyle jobs from a specific branch.
+The session we had on Integrating GitHub Public & Private Repository to trigger the Jenkins Freestyle jobs from a specific branch.
 
 
 
