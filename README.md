@@ -368,7 +368,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230714 0225-1 Day #29_
 
 Recording link: 
-https://drive.google.com/file/d/1LUGyvICvfeZ9e8CtCR4Z9v9cfAEO9HoS/view?usp=drive_link
+https://drive.google.com/file/d/1cUtjig9R7jxR_BQBioLoZbj2fsn4Undz/view?usp=share_link
 
 Desc: 
 The session we have gone through today is about TF basics like Resource definition, Outputs & Variables. On the same note, we went through a very basic TF code setup with a default AWS Profile to create an AWS S3 bucket with basic configurations to understand the overall workflow along with Terraform CLI Operations.
@@ -381,7 +381,7 @@ Topic:
 _AWS Cloud DevOps Training - CloudSpikes - June 2023-20230715 0225-1 Day #30_
 
 Recording link: 
-https://drive.google.com/file/d/1MGiLzUQaz4TmAvcaJ26XApv44TTTMUNK/view?usp=drive_link
+https://drive.google.com/file/d/1-24I-p0WMcsNgMrLJaL8k-Eu6iJ9PPRf/view?usp=share_link
 
 Desc: 
 The session we had on setting up AWS VPC with public & private subnets along with EC2 servers to test the network configurations setup via Terraform scripts.
