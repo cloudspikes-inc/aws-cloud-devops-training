@@ -1,3 +1,2 @@
 provider "aws" {
-  profile = "default"
 }
