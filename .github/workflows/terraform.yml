@@ -79,8 +79,8 @@ jobs:
       env:
           AWS_AK: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SK: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ env.AWS_REGION }}
-          AWS_PROF: ${{ env.AWS_PROFILE }}
+          AWS_REGION: ${{ vars.AWS_REGION }}
+          AWS_PROF: ${{ vars.AWS_PROFILE }}
       run: |
         terraform --version
         aws --version
