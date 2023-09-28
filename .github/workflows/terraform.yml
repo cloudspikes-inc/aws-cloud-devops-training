@@ -81,44 +81,14 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ vars.AWS_REGION }}
 
-    # Setup AWS default profile.
-    - name: AWS Configure
-      env:
-          AWS_AK: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SK: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ vars.AWS_REGION }}
-          AWS_PROF: ${{ vars.AWS_PROFILE }}
-      run: |
-        terraform --version
-        aws --version
-        aws configure set aws_access_key_id $AWS_AK --profile $AWS_PROF
-        aws configure set aws_secret_access_key $AWS_SK --profile $AWS_PROF
-        aws configure set default.region $AWS_REGION --profile $AWS_PROF
-        aws s3 ls --profile $AWS_PROF
-        aws s3 ls
-
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       working-directory: ./terraform_iac/aws-ecs-fargate-all-in-1/infra
-      env:
-          AWS_PROF: ${{ vars.AWS_PROFILE }}
       run: |
         pwd
         ls -la
         whoami
         aws s3 ls
-        terraform init
-
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init
-      working-directory: ./terraform_iac/aws-ecs-fargate-all-in-1/infra
-      env:
-          AWS_PROF: ${{ vars.AWS_PROFILE }}
-      run: |
-        pwd
-        ls -la
-        whoami
-        aws s3 ls --profile $AWS_PROF
         terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
