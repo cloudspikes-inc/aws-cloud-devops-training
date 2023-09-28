@@ -1,3 +1,3 @@
 provider "aws" {
-  profile = "terraform-test"
+  profile = "default"
 }
