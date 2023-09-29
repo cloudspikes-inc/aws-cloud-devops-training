@@ -112,12 +112,12 @@ jobs:
         AWS_ACC_ID: ${{ secrets.AWS_ACCOUNT_ID }}
         AWS_REG: ${{ vars.AWS_REGION }}
       working-directory: ./terraform_iac/serverless-dynamodb
-      run: terraform plan -var=aws_ak=$AWS_AK -var=aws_sk=$AWS_SK -var=aws_region=$AWS_REG -var=aws_account_id=$AWS_ACC_ID
+      run: terraform plan -var=aws_ak=AKIAY6Q3RVQWGQ5IFNCA -var=aws_sk=GuduEs4y8B1eoOUv0qe8RwB4JCqmsTMWt0CejGgX -var=aws_region=us-east-1 -var=aws_account_id=615311846444
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
       working-directory: ./terraform_iac/serverless-dynamodb
       run: |
-        terraform apply -var=aws_ak=$AWS_AK -var=aws_sk=$AWS_SK -var=aws_region=$AWS_REG -var=aws_account_id=$AWS_ACC_ID -auto-approve
-        terraform destroy -var=aws_ak=$AWS_AK -var=aws_sk=$AWS_SK -var=aws_region=$AWS_REG -var=aws_account_id=$AWS_ACC_ID -auto-approve
+        terraform apply -var=aws_ak=AKIAY6Q3RVQWGQ5IFNCA -var=aws_sk=GuduEs4y8B1eoOUv0qe8RwB4JCqmsTMWt0CejGgX -var=aws_region=us-east-1 -var=aws_account_id=615311846444 -auto-approve
+        # terraform destroy -var=aws_ak=$AWS_AK -var=aws_sk=$AWS_SK -var=aws_region=$AWS_REG -var=aws_account_id=$AWS_ACC_ID -auto-approve
