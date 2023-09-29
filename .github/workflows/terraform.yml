@@ -81,6 +81,14 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ vars.AWS_REGION }}
 
+    - name: Download the App build.
+      working-directory: ./terraform_iac/serverless-dynamodb
+      run: |
+        pwd
+        ls -la
+        aws s3 cp s3://serverless-dynamodb-app-build/demo-1.0.0.jar .
+        ls -la
+
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       working-directory: ./terraform_iac/serverless-dynamodb
