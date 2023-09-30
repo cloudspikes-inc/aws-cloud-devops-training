@@ -106,6 +106,10 @@ jobs:
       working-directory: ./terraform_iac/serverless-dynamodb
       run: terraform fmt -check
 
+    - name: Terraform Validation
+      working-directory: ./terraform_iac/serverless-dynamodb
+      run: terraform validate
+
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       env:
@@ -127,4 +131,4 @@ jobs:
       working-directory: ./terraform_iac/serverless-dynamodb
       run: |
         terraform apply -var=aws_ak=$AWS_AK -var=aws_sk=$AWS_SK -var=aws_region=$AWS_REG -var=aws_account_id=$AWS_ACC_ID -auto-approve
-        terraform destroy -var=aws_ak=$AWS_AK -var=aws_sk=$AWS_SK -var=aws_region=$AWS_REG -var=aws_account_id=$AWS_ACC_ID -auto-approve
+        # terraform destroy -var=aws_ak=$AWS_AK -var=aws_sk=$AWS_SK -var=aws_region=$AWS_REG -var=aws_account_id=$AWS_ACC_ID -auto-approve
