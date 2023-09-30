@@ -104,11 +104,11 @@ public class LambdaFunctionHandler implements RequestStreamHandler {
 		for(int i=0; i<scanResult.size(); i++) {
 			System.out.println("Table item index: "+i+" ");
 			System.out.println("Table data: "+scanResult.get(i).toString());
-			responseMsg = responseMsg + "CloudSpikes --> Table data for index: "+i+" "+scanResult.get(i).toString()+" \n";
+			responseMsg = responseMsg + "CloudSpikes -- Table data for index: "+i+" "+scanResult.get(i).toString()+" \n";
 		}
 
 		
-		System.out.println("CloudSpikes --> Lambda execution completed with responseData: " + responseMsg);
+		System.out.println("CloudSpikes -- Lambda execution completed with responseData: " + responseMsg);
 		
 		output.write(responseMsg.getBytes());
 	}
