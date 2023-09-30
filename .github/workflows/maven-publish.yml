@@ -56,7 +56,7 @@ jobs:
         cd target
         ls -la
         pwd
-        aws config list
+        aws configure list
         aws s3 ls
         aws s3 mv demo-1.0.0.jar s3://serverless-dynamodb-app-build/demo-1.0.0.jar
 
