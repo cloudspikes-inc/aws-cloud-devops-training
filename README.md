@@ -18,5 +18,7 @@ Topics covered in the training sessions:
 5. GitHub Actions.
 
 For any technical assistance or queries feel free to reach us over WhatsApp or Email as given below:
+
 https://wa.me/+16473767753
+
 support@cloudspikes.ca
